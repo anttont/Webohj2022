@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $("#tallennaBtn").click(function () {
+          var fiText = $("#fin").val();
+          var enText = $("#eng").val();
+
+          $.post(
+            "http://localhost:3000/sanakirja",
+            {
+              fin: fiText,
+              eng: enText,
+            },
+            function (data, status) {
+              alert("Data: " + data + "\nStatus: " + status);
+            }
+          );
+        });
+
+        $("#haeBtn").click(function () {
+          var haeText = $("#haeText").val();
+
+          $.get("http://localhost:3000/sanakirja", function (data, status) {
+            $.each(data, function (key, value) {
+              if (`${value.fin}` == haeText) {
+                alert("Käännös on: " + `${value.eng}`);
+              }
+            });
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <form id="form" name="form">
+      <th>Sana suomeksi</th>
+      <td>
+        <input
+          name="fi"
+          placeholder="Anna haettava sana suomeksi"
+          id="haeText"
+          type="text"
+          value=""
+          maxlength="35"
+          size="35"
+        />
+      </td>
+
+      <td>
+        <input id="haeBtn" name="Submit" type="button" value="Hae" />
+      </td>
+
+      <th>Sanapari</th>
+      <td>
+        <input
+          name="fin"
+          placeholder="Sana suomeksi"
+          id="fin"
+          type="text"
+          value=""
+          maxlength="35"
+          size="35"
+        />
+      </td>
+
+      <td>
+        <input
+          name="eng"
+          id="eng"
+          placeholder="Sana englanniksi"
+          type="text"
+          value=""
+          maxlength="35"
+          size="35"
+        />
+      </td>
+
+      <td>
+        <input id="tallennaBtn" name="Submit" type="button" value="Tallenna" />
+      </td>
+    </form>
+  </body>
+</html>

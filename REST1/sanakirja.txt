@@ -1,4 +1,5 @@
-kala fish
-kello clock
-kello clock
 pallo ball
+kello clock
+kala fish
+hattu hat
+kakku  cake

@@ -67,21 +67,7 @@ app.use(function (req, res, next) {
 });
 
 app.get("/sanakirja", (req, res) => {
-  const myJson = req.body;
-
-  try {
-    const sanahaku = `${myJson.fin}`;
-
-    if (sanakirja.find((e) => e.fin === sanahaku)) {
-      res.json(sanakirja.find((e) => e.fin === sanahaku));
-
-      return res.status(201);
-    } else {
-      return res.status(400).json("Not found");
-    }
-  } catch (error) {
-    console.log(error);
-  }
+  res.json(sanakirja); //palautetaan sanakirja taulukko json muodossa
 });
 
 app.post("/sanakirja", (req, res) => {
@@ -117,3 +103,21 @@ app.post("/sanakirja", (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });
+/*
+app.get("/sanakirja", (req, res) => {
+  const myJson = req.body;
+
+  try {
+    const sanahaku = `${myJson.fin}`;
+
+    if (sanakirja.find((e) => e.fin === sanahaku)) {
+      res.json(sanakirja.find((e) => e.fin === sanahaku));
+
+      return res.status(201);
+    } else {
+      return res.status(400).json("Not found");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+});*/
